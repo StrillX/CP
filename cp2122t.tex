@@ -309,15 +309,13 @@
 
 \begin{center}\large
 \begin{tabular}{ll}
-\textbf{Grupo} nr. & 99 (preencher)
+\textbf{Grupo} nr. & 65 
 \\\hline
-a11111 & Nome1 (preencher)
+a91680 & Bruno Jardim 
 \\
-a22222 & Nome2 (preencher)
+a91643 & Eduardo Freitas
 \\
-a33333 & Nome3 (preencher)
-\\
-a44444 & Nome4 (preencher, se aplicável, ou apagar)
+a91699 & Pedro Fernandes
 \end{tabular}
 \end{center}
 
@@ -1181,27 +1179,71 @@ Valoriza-se a escrita de \emph{pouco} código que corresponda a soluções
 simples e elegantes.
 
 \subsection*{Problema 1} \label{pg:P1}
+\begin{eqnarray*}
+\start
+     \ensuremath{\conj{\Varid{qd}}{\conj{\Varid{rd}}{\Varid{cd}}}}
+%
+\just\equiv{ Fokkinga }
+%               
+    \ensuremath{\begin{lcbr}\Varid{qd}\comp \mathbf{in}\mathrel{=}\Varid{f}\comp \Conid{F}\;\conj{\Varid{qd}}{\conj{\Varid{rd}}{\Varid{cd}}}\\\Varid{rd}\comp \mathbf{in}\mathrel{=}\Varid{g}\comp \Conid{F}\;\conj{\Varid{qd}}{\conj{\Varid{rd}}{\Varid{cd}}}\\\Varid{cd}\comp \mathbf{in}\mathrel{=}\Varid{h}\comp \Conid{F}\;\conj{\Varid{qd}}{\conj{\Varid{rd}}{\Varid{cd}}}\end{lcbr}}
+%
+\just\equiv{ Seja: }
+%
+\ensuremath{\Varid{cond}\mathrel{=}(\mathrm{0}\equiv )\comp \p2\comp \p2}
+%
+\just\equiv{Definição de in; Def - x}
+    \ensuremath{\begin{lcbr}\begin{lcbr}\Varid{qd}\;\mathrm{0}\mathrel{=}\mathrm{0}\\\Varid{qd}\;\Varid{n}\mathrel{=}(\Varid{cond}\to \succ \comp \p1,\p1)\comp (\Varid{qd}\;\Varid{n},(\Varid{rd}\;\Varid{n},\Varid{cd}\;\Varid{n}))\end{lcbr}\\\begin{lcbr}\Varid{rd}\;\mathrm{0}\mathrel{=}\mathrm{0}\\\Varid{rd}\;\Varid{n}\mathrel{=}(\Varid{cond}\to \mathrm{0},\succ \comp \p1\comp \p2)\comp (\Varid{qd}\;\Varid{n},(\Varid{rd}\;\Varid{n},\Varid{cd}\;\Varid{n}))\end{lcbr}\\\begin{lcbr}\Varid{cd}\;\mathrm{0}\mathrel{=}\Varid{d}\\\Varid{cd}\;\Varid{n}\mathrel{=}(\Varid{cond}\to \Varid{d},\Varid{pred}\comp \p2\comp \p2)\comp (\Varid{qd}\;\Varid{n},(\Varid{rd}\;\Varid{n},\Varid{cd}\;\Varid{n}))\end{lcbr}\end{lcbr}}
+\just\equiv {Funtor para naturais; Definição de in para naturais; Universal-cata}
+    \ensuremath{\cata{\conj{\alt{\mathrm{0}}{\Varid{cond}\to \succ \comp \p1,\p1}}{\conj{\alt{\mathrm{0}}{\Varid{cond}\to \mathrm{0},\succ \comp \p1\comp \p2}}{\alt{\Varid{d}}{(\Varid{cond}\to \Varid{d},\Varid{pred}\comp \p2\comp \p2)}}}}}
 
-Apresentar cálculos aqui, se desejável acompanhados de diagramas, etc.
+\just\equiv {Definição de for}
+    \ensuremath{\for{\conj{(\Varid{cond}\to \succ \comp \p1,\p1)}{\conj{(\Varid{cond}\to \mathrm{0},\succ \comp \p1\comp \p2)}{(\Varid{cond}\to \Varid{d},\Varid{pred}\comp \p2\comp \p2)}}}\ {(\mathrm{0},\mathrm{0},\Varid{d})}}
+\qed
+
+\end{eqnarray*}
+
 
 \subsection*{Problema 2}
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
-\column{7}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{11}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{39}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
+\>[B]{}\Varid{umin}\mathbin{::}\Conid{Ord}\;\Varid{a}\Rightarrow (\Varid{a},\Varid{a})\to \Varid{a}{}\<[E]%
+\\
+\>[B]{}\Varid{umin}\mathrel{=}\uncurry{\Varid{min}}{}\<[E]%
+\\[\blanklineskip]%
 \>[B]{}\Varid{alice}\mathbin{::}\Conid{Ord}\;\Varid{c}\Rightarrow {\LTree}\;\Varid{c}\to \Varid{c}{}\<[E]%
 \\
-\>[B]{}\Varid{alice}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{alice}\mathrel{=}\alt{\Varid{id}}{\Varid{umax}\comp (\Varid{bob}\times\Varid{bob})}\comp \mathsf{out}{}\<[E]%
 \\[\blanklineskip]%
 \>[B]{}\Varid{bob}\mathbin{::}\Conid{Ord}\;\Varid{c}\Rightarrow {\LTree}\;\Varid{c}\to \Varid{c}{}\<[E]%
 \\
-\>[B]{}\Varid{bob}{}\<[7]%
-\>[7]{}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{bob}\mathrel{=}\alt{\Varid{id}}{\Varid{umin}\comp (\Varid{alice}\times\Varid{alice})}\comp \mathsf{out}{}\<[E]%
 \\[\blanklineskip]%
 \>[B]{}\Varid{both}\mathbin{::}\Conid{Ord}\;\Varid{d}\Rightarrow {\LTree}\;\Varid{d}\to (\Varid{d},\Varid{d}){}\<[E]%
 \\
-\>[B]{}\Varid{both}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{both}\mathrel{=}(\Varid{alice}\times\Varid{bob})\comp \Varid{diag}{}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{alice2}\mathbin{::}\Conid{Ord}\;\Varid{c}\Rightarrow {\LTree}\;\Varid{c}\to \Varid{c}{}\<[E]%
+\\
+\>[B]{}\Varid{alice2}\mathrel{=}\p1\comp \Varid{both2}{}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{bob2}\mathbin{::}\Conid{Ord}\;\Varid{c}\Rightarrow {\LTree}\;\Varid{c}\to \Varid{c}{}\<[E]%
+\\
+\>[B]{}\Varid{bob2}\mathrel{=}\p2\comp \Varid{both2}{}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{both2}\mathbin{::}{}\<[11]%
+\>[11]{}\Conid{Ord}\;\Varid{d}\Rightarrow {\LTree}\;\Varid{d}\to (\Varid{d},\Varid{d}){}\<[E]%
+\\
+\>[B]{}\Varid{both2}\mathrel{=}\llparenthesis\, \alt{\conj{\Varid{id}}{\Varid{id}}}{\conj{\Varid{umax}\comp (\p2\times\p2)}{\Varid{umin}\comp (\p1\times\p1)}}\,\rrparenthesis{}\<[E]%
+\\[\blanklineskip]%
+\>[B]{}\Varid{both3}\mathbin{::}{}\<[11]%
+\>[11]{}\Conid{Ord}\;\Varid{d}\Rightarrow {\LTree}\;\Varid{d}\to (\Varid{d},\Varid{d}){}\<[E]%
+\\
+\>[B]{}\Varid{both3}\mathrel{=}\llparenthesis\, \conj{\alt{\Varid{id}}{{}\<[39]%
+\>[39]{}\Varid{umax}\comp (\p2\times\p2)}}{\alt{\Varid{id}}{\Varid{umin}\comp (\p1\times\p1)}}\,\rrparenthesis{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 
@@ -1212,45 +1254,56 @@ Biblioteca \ensuremath{\mathsf{LTree3}}:
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{27}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
-\>[B]{}\Varid{inLTree3}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{inLTree3}\mathrel{=}\alt{\Conid{Tri}}{\uncurry{\uncurry{\Conid{Nodo}}}}{}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{outLTree3}\;(\Conid{Tri}\;\Varid{t})\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{outLTree3}\;(\Conid{Tri}\;\Varid{t})\mathrel{=}i_1\;\Varid{t}{}\<[E]%
 \\
 \>[B]{}\Varid{outLTree3}\;(\Conid{Nodo}\;\Varid{a}\;\Varid{b}\;\Varid{c})\mathrel{=}{}\<[27]%
-\>[27]{}\bot {}\<[E]%
+\>[27]{}i_2\;((\Varid{a},\Varid{b}),\Varid{c}){}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{baseLTree3}\;\Varid{f}\;\Varid{g}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{baseLTree3}\;\Varid{f}\;\Varid{g}\mathrel{=}\Varid{f}+((\Varid{g}\times\Varid{g})\times\Varid{g}){}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{recLTree3}\;\Varid{f}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{recLTree3}\;\Varid{f}\mathrel{=}\Varid{baseLTree3}\;\Varid{id}\;\Varid{f}{}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{cataLTree3}\;\Varid{f}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{cataLTree3}\;\Varid{f}\mathrel{=}\Varid{f}\comp (\Varid{recLTree3}\;(\Varid{cataLTree3}\;\Varid{f}))\comp \Varid{outLTree3}{}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{anaLTree3}\;\Varid{f}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{anaLTree3}\;\Varid{f}\mathrel{=}\Varid{inLTree3}\comp (\Varid{recLTree3}\;(\Varid{anaLTree3}\;\Varid{f}))\comp \Varid{f}{}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\Varid{hyloLTree3}\;\Varid{f}\;\Varid{g}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\Varid{hyloLTree3}\;\Varid{f}\;\Varid{g}\mathrel{=}\Varid{cataLTree3}\;\Varid{f}\comp \Varid{anaLTree3}\;\Varid{g}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 Genes do hilomorfismo \ensuremath{\Varid{sierpinski}}:
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
-\column{6}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{5}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{27}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
-\>[B]{}g_1 \mathrel{=}\bot {}\<[E]%
+\>[B]{}g_1 \mathrel{=}\alt{\Varid{singl}}{\mathsf{conc}\comp (\mathsf{conc}\times\Varid{id})}{}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}g_2 \;(\Varid{t},\mathrm{0})\mathrel{=}\bot {}\<[E]%
+\>[B]{}g_2 \;(\Varid{t},\mathrm{0})\mathrel{=}i_1\;\Varid{t}{}\<[E]%
 \\
 \>[B]{}g_2 \;(((\Varid{x},\Varid{y}),\Varid{s}),\Varid{n}\mathbin{+}\mathrm{1})\mathrel{=}i_2\;((\Varid{t1},\Varid{t2}),\Varid{t3})\;\mathbf{where}{}\<[E]%
 \\
-\>[B]{}\hsindent{6}{}\<[6]%
-\>[6]{}\Varid{t1}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{l}\mathrel{=}\Varid{s}\div \mathrm{2}{}\<[E]%
 \\
-\>[B]{}\hsindent{6}{}\<[6]%
-\>[6]{}\Varid{t2}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{t1}\mathrel{=}(((\Varid{x},\Varid{y}){}\<[27]%
+\>[27]{},\Varid{l}),\Varid{n}){}\<[E]%
 \\
-\>[B]{}\hsindent{6}{}\<[6]%
-\>[6]{}\Varid{t3}\mathrel{=}\bot {}\<[E]%
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{t2}\mathrel{=}(((\Varid{x}\mathbin{+}\Varid{l},\Varid{y}),\Varid{l}),\Varid{n}){}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\Varid{t3}\mathrel{=}(((\Varid{x},\Varid{y}\mathbin{+}\Varid{l}),\Varid{l}),\Varid{n}){}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
+
+
+
+
+
+
 
 \subsection*{Problema 4}
 
@@ -1263,26 +1316,28 @@ Genes do hilomorfismo \ensuremath{\Varid{sierpinski}}:
 \>[B]{}\Varid{propagate}\;\Varid{f}\mathrel{=}\cataList{\Varid{g}\;\Varid{f}}\;\mathbf{where}{}\<[E]%
 \\
 \>[B]{}\hsindent{4}{}\<[4]%
-\>[4]{}\Varid{g}\;\Varid{f}\mathrel{=}\alt{\bot }{g_2 \;\Varid{f}}{}\<[E]%
+\>[4]{}\Varid{g}\;\Varid{f}\mathrel{=}\alt{\Varid{return}\comp \Varid{nil}}{g_2 \;\Varid{f}}{}\<[E]%
 \\
 \>[B]{}\hsindent{4}{}\<[4]%
-\>[4]{}g_2 \;\Varid{f}\;(\Varid{a},\Varid{b})\mathrel{=}\bot {}\<[E]%
+\>[4]{}g_2 \;\Varid{f}\;(\Varid{a},\Varid{b})\mathrel{=}\mathbf{do}\;\{\mskip1.5mu \Varid{t}\leftarrow \Varid{b};\Varid{h}\leftarrow \Varid{f}\;\Varid{a};\Varid{return}\;(\Varid{h}\mathbin{:}\Varid{t})\mskip1.5mu\}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{4}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{47}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\Varid{propagate3}\mathbin{::}(\Conid{Monad}\;\Varid{m})\Rightarrow (\Conid{Bit3}\to \Varid{m}\;\Conid{Bit3})\to [\mskip1.5mu \Conid{Bit}\mskip1.5mu]\to \Varid{m}\;[\mskip1.5mu \Conid{Bit}\mskip1.5mu]{}\<[E]%
 \\
 \>[B]{}\Varid{propagate3}\;\Varid{f}\mathrel{=}\cataList{\Varid{g}\;\Varid{f}}\;\mathbf{where}{}\<[E]%
 \\
 \>[B]{}\hsindent{4}{}\<[4]%
-\>[4]{}\Varid{g}\;\Varid{f}\mathrel{=}\alt{\bot }{g_2 \;\Varid{f}}{}\<[E]%
+\>[4]{}\Varid{g}\;\Varid{f}\mathrel{=}\alt{\Varid{return}\comp \Varid{nil}}{g_2 \;\Varid{f}}{}\<[E]%
 \\
 \>[B]{}\hsindent{4}{}\<[4]%
-\>[4]{}g_2 \;\Varid{f}\;(\Varid{a},\Varid{b})\mathrel{=}\bot {}\<[E]%
+\>[4]{}g_2 \;\Varid{f}\;(\Varid{a},\Varid{b})\mathrel{=}\mathbf{do}\;\{\mskip1.5mu \Varid{t}\leftarrow \Varid{b};\Varid{h}\leftarrow \Varid{f}\;(\Varid{a},\Varid{a},\Varid{a});{}\<[47]%
+\>[47]{}\Varid{return}\;(v_3 \;\Varid{h}\mathbin{:}\Varid{t})\mskip1.5mu\}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 A função \ensuremath{\Varid{bflip3}}, a programar a seguir, deverá estender \ensuremath{\Varid{bflip}} aos três bits da entrada:
@@ -1292,7 +1347,7 @@ A função \ensuremath{\Varid{bflip3}}, a programar a seguir, deverá estender \
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\Varid{bflip3}\mathbin{::}\Conid{Bit3}\to \fun{Dist}\;\Conid{Bit3}{}\<[E]%
 \\
-\>[B]{}\Varid{bflip3}\;(\Varid{a},\Varid{b},\Varid{c})\mathrel{=}\mathbf{do}\;\{\mskip1.5mu \bot \mskip1.5mu\}{}\<[E]%
+\>[B]{}\Varid{bflip3}\;(\Varid{a},\Varid{b},\Varid{c})\mathrel{=}\mathbf{do}\;\{\mskip1.5mu \Varid{na}\leftarrow \Varid{bflip}\;\Varid{a};\Varid{nb}\leftarrow \Varid{bflip}\;\Varid{b};\Varid{nc}\leftarrow \Varid{bflip}\;\Varid{c};\Varid{return}\;(\Varid{na},\Varid{nb},\Varid{nc})\mskip1.5mu\}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 

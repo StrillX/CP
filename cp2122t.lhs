@@ -151,7 +151,7 @@
 
 \begin{center}\large
 \begin{tabular}{ll}
-\textbf{Grupo} nr. & 99 (preencher)
+\textbf{Grupo} nr. & 65 
 \\\hline
 a91680 & Bruno Jardim 
 \\
@@ -884,8 +884,56 @@ Valoriza-se a escrita de \emph{pouco} código que corresponda a soluções
 simples e elegantes.
 
 \subsection*{Problema 1} \label{pg:P1}
+%format (lcbr3 (x)(y)(z)) = "\begin{lcbr}" x "\\" y "\\" z "\end{lcbr}"
+\begin{eqnarray*}
+\start
+     |split qd (split rd cd)|
+%
+\just\equiv{ Fokkinga }
+%               
+    |lcbr3(
+        qd . in = f . F (split qd (split rd cd))
+    )(
+        rd . in = g . F (split qd (split rd cd))
+    )(
+        cd . in = h . F (split qd (split rd cd))
+    )|
+%
+\just\equiv{ Seja: }
+%
+|cond = (0==).p2.p2|
+%
+\just\equiv{Definição de in; Def - x}
+    |lcbr3(
+        lcbr(qd 0 = 0)
+            (qd n = (cond -> succ . p1, p1 ) . (qd n, (rd n, cd n)))
+            
+    )(
+        lcbr(rd 0 = 0)
+            (rd n = (cond -> 0, succ . p1 .p2) . (qd n, (rd n, cd n)))
+    )(
+        lcbr(cd 0 = d)
+            (cd n = (cond -> d, pred . p2 .p2) . (qd n, (rd n, cd n)))
+    )|
+\just\equiv {Funtor para naturais; Definição de in para naturais; Universal-cata}
+    |
+        cata ( split (either 0 (cond -> succ . p1, p1 ))
+                    (split (either 0 (cond -> 0, succ . p1 .p2))
+                            (either d ((cond -> d, pred . p2 .p2)))
+                    ))
+        
+    |
 
-Apresentar cálculos aqui, se desejável acompanhados de diagramas, etc.
+\just\equiv {Definição de for}
+    |
+        for (split ((cond -> succ . p1, p1 )) 
+        (split ((cond -> 0, succ . p1 .p2)) ((cond -> d, pred . p2 .p2))))
+        ((0,0,d))
+    |
+\qed
+
+\end{eqnarray*}
+
 
 \subsection*{Problema 2}
 
@@ -903,10 +951,19 @@ bob = either id (umin . (alice><alice)) . outLTree
 both :: Ord d => LTree d -> (d, d)
 both = (alice >< bob) . diag
 
+alice2 :: Ord c => LTree c -> c
+alice2 = p1.both2
+
+bob2 :: Ord c => LTree c -> c
+bob2 = p2.both2
+
+both2 ::  Ord d => LTree d -> (d,d)
+both2 = cataLTree ( either (split id id ) (split (umax . (p2><p2)) (umin . (p1><p1) ) ))
+
+both3 ::  Ord d => LTree d -> (d,d)
+both3 = cataLTree ( split (either id  (umax . (p2><p2))) (either id (umin . (p1><p1) ) ))
 
 \end{code}
-%both2 :: Ord d => LTree d -> (d, d)
-%both2 = cataLTree  (swap . (umax >< umin))
 
 \subsection*{Problema 3}
 Biblioteca |LTree3|:
@@ -963,7 +1020,7 @@ propagate f = cataList (g f) where
 propagate3 :: (Monad m) => (Bit3 -> m Bit3) -> [Bit] -> m [Bit]
 propagate3 f = cataList (g f) where
    g f = either (return . nil) (g2 f)
-   g2 f (a,b) = do {nb <- b ; na <- f(a,a,a) ;  return (v3 na :nb)}
+   g2 f (a,b) = do {t <- b ; h <- f(a,a,a) ;  return (v3 h :t)}
 \end{code}
 A função |bflip3|, a programar a seguir, deverá estender |bflip| aos três bits da entrada:
 
